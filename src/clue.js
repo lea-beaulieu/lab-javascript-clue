@@ -165,51 +165,32 @@ const weaponsArray = [
   },
 ];
 
-
-# Clue data
-
-Use this data to model your game cards into objects.
-
-<br>
-
-
-<br>
-
-### Rooms
-
-```
-name: Dining Room
-name: Conservatory
-name: Kitchen
-name: Study
-name: Library
-name: Billiard Room
-name: Lounge
-name: Ballroom
-name: Hall
-name: Spa
-name: Living Room
-name: Observatory
-name: Theater
-name: Guest House
-name: Patio
-```
-
-
-
-
 // ITERATION 2
 
-function selectRandom() {}
+function selectRandom(cardArray) {
+  let randomIndex = Math.floor(Math.random() * cardArray.length);
+  return cardArray[randomIndex];
+}
 
-function pickMystery() {}
+function pickMystery() {
+  let mysteryCards = {
+    suspect: selectRandom(suspectsArray),
+    weapon: selectRandom(weaponsArray),
+    room: selectRandom(roomsArray)  
+  }
+  return mysteryCards;
+}
 
 
 // ITERATION 3
 
-function revealMystery() {}
-
-
+function revealMystery(mysteryCards) {
+  let firstName = mysteryCards.suspect.firstName;
+  let lastName = mysteryCards.suspect.lastName;
+  let weapon = mysteryCards.weapon.name;
+  let room = mysteryCards.room.name;
+  return `${firstName} ${lastName} killed Mr. Boddy using the ${weapon} in the ${room}!`;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
@@ -223,3 +204,5 @@ if (typeof module !== 'undefined') {
     selectRandom
   };
 }
+
+test
